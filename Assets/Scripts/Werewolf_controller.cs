@@ -11,6 +11,7 @@ public class Werewolf_Controller : MonoBehaviour
     public float walkSpeed = 3f;
     public float walkStopRate = 0.05f;
     public DetectionZone attackZone;
+    public DetectionZone cliffDetectionZone;
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
@@ -81,24 +82,26 @@ public class Werewolf_Controller : MonoBehaviour
     }
 
     private void FixedUpdate()
+{
+
+    if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
     {
-
-        if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
-        {
-            FlipDirection();
-        }
-
-        if (!damageable.LockVelocity)
-        {
-            if (CanMove)
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
-            else
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
-        }
-
+        FlipDirection();
     }
 
-    private void FlipDirection()
+    if (!damageable.LockVelocity)
+    {
+        if (CanMove)
+        {
+            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+        }
+    }
+}
+ private void FlipDirection()
     {
         if (WalkDirection == WalkableDirection.Right)
         {
@@ -114,9 +117,17 @@ public class Werewolf_Controller : MonoBehaviour
         }
     }
 
-    public void OnHit(int damage, Vector2 knockback)
+public void OnHit(int damage, Vector2 knockback)
+{
+    rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+}
+
+    public void OnCliffDetected()
     {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        if(touchingDirections.IsGrounded)
+        {
+            FlipDirection();
+        }
     }
 
 }

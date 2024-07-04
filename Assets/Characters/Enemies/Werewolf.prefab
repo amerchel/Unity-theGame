@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1044096963590221887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,12 +79,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.24528766, y: 0.3203486}
-      - {x: 0.106746614, y: 0.2017035}
-      - {x: 0.28111452, y: 0.09487188}
-      - {x: 0.34760782, y: 0.10059166}
-      - {x: 0.49011612, y: 0.2000373}
-      - {x: 0.44929534, y: 0.29792193}
+    - - {x: 0.08507341, y: 0.122436866}
+      - {x: -0.28907692, y: 0.013216153}
+      - {x: -0.11785051, y: -0.06534237}
+      - {x: 0.1308474, y: 0.000065013766}
+      - {x: 0.1759705, y: 0.07123755}
+      - {x: 0.13200822, y: 0.11257598}
   m_UseDelaunayMesh: 0
 --- !u!114 &7257507461368715185
 MonoBehaviour:
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 2707858298129176400}
   - component: {fileID: 8432279910146662709}
   m_Layer: 10
-  m_Name: DetectionZone
+  m_Name: HitboxDetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.59974885, y: 0.42693925}
+  m_Offset: {x: 0.7327199, y: 0.42693925}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -177,7 +177,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.9326758, y: 1.899241}
+  m_Size: {x: 2.198618, y: 1.899241}
   m_EdgeRadius: 0
 --- !u!114 &8432279910146662709
 MonoBehaviour:
@@ -191,6 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079e6906d626b7a419eaec4436d89911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noCollidersRemain:
+    m_PersistentCalls:
+      m_Calls: []
   detectedColliders: []
 --- !u!1 &5276441513673491652
 GameObject:
@@ -230,6 +233,7 @@ Transform:
   m_Children:
   - {fileID: 8549737817022334996}
   - {fileID: 5058993569455528249}
+  - {fileID: 8623833882019113873}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &277533666812973053
@@ -348,8 +352,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0018224716, y: 0.0041179657}
-  m_Size: {x: 0.51975906, y: 0.75403064}
+  m_Offset: {x: 0.028416714, y: 0.0041179657}
+  m_Size: {x: 0.32473454, y: 0.75403064}
   m_Direction: 0
 --- !u!114 &5142772489474374404
 MonoBehaviour:
@@ -366,6 +370,7 @@ MonoBehaviour:
   walkSpeed: 3
   walkStopRate: 0.02
   attackZone: {fileID: 8432279910146662709}
+  cliffDetectionZone: {fileID: 6876065603967718854}
   _hasTarget: 0
 --- !u!114 &6007512408943061960
 MonoBehaviour:
@@ -435,9 +440,128 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagableHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5142772489474374404}
+        m_TargetAssemblyTypeName: Werewolf_Controller, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _maxHealth: 100
   _health: 100
   _isAlive: 1
   isInvincible: 0
   invincibilityTime: 0.25
+--- !u!1 &6788947221237807497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8623833882019113873}
+  - component: {fileID: 7408499748351113390}
+  - component: {fileID: 6876065603967718854}
+  m_Layer: 11
+  m_Name: CliffDetectionZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8623833882019113873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788947221237807497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.694, y: -0.746, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2132315202314100091}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &7408499748351113390
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788947221237807497}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &6876065603967718854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788947221237807497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079e6906d626b7a419eaec4436d89911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noCollidersRemain:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5142772489474374404}
+        m_TargetAssemblyTypeName: Werewolf_Controller, Assembly-CSharp
+        m_MethodName: OnCliffDetected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  detectedColliders: []
