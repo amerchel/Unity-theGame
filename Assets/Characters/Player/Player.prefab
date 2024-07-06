@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cfc8abd30d0dc4ba4ec5def74832a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 15
+  attackDamage: 10
   knockback: {x: 1, y: 1}
 --- !u!1 &4847475171172438427
 GameObject:
@@ -240,7 +240,7 @@ MonoBehaviour:
   walkSpeed: 5
   runSpeed: 8
   airWalkSpeed: 3
-  jumpImpulse: 8
+  jumpImpulse: 10
   _isMoving: 0
   _isRunning: 0
   _isFacingRight: 1

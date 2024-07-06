@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage = 10;
+    public int damage = 20;
     public Vector2 moveSpeed = new Vector2(3f,0);
     public Vector2 knockback = new Vector2(0,0);
 

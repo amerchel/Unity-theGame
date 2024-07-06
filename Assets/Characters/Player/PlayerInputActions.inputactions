@@ -262,7 +262,7 @@
                 {
                     "name": "",
                     "id": "bc9b55cd-53ea-421b-a921-903e6ec3f089",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
