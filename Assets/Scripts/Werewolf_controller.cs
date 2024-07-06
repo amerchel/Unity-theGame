@@ -91,7 +91,7 @@ public class Werewolf_Controller : MonoBehaviour
 
     if (!damageable.LockVelocity)
     {
-        if (CanMove)
+        if (CanMove && touchingDirections.IsGrounded)
         {
             rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
         }
