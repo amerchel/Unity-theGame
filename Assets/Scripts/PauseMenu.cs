@@ -11,8 +11,8 @@ public class PauseMenu : MonoBehaviour
 
     public void UnpauseGame()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     public void EndGame()
