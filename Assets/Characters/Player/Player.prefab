@@ -241,8 +241,11 @@ MonoBehaviour:
   runSpeed: 8
   airWalkSpeed: 3
   jumpImpulse: 10
+  rollImpulse: 10
+  rollSpeed: 20
   _isMoving: 0
   _isRunning: 0
+  _isRolling: 0
   _isFacingRight: 1
 --- !u!114 &1170020282655455984
 MonoBehaviour:
@@ -393,6 +396,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4d62ae8d-7b88-4c2d-a848-ca5603ca8547
     m_ActionName: 'Player/RangedAttack[/Mouse/leftButton,/Keyboard/j]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7412512628163841115}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: OnRoll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cb7dac21-bf23-4e00-b15a-80f7b553ac1f
+    m_ActionName: 'Player/Roll[/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -411,7 +430,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 862d045b0109cbc42af923fcca9849f8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0

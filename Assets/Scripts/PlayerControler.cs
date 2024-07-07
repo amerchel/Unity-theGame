@@ -11,10 +11,11 @@ public class PlayerControler : MonoBehaviour
     public float runSpeed = 8f;
     public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
+    public float rollImpulse = 10f;
+    public float rollSpeed = 10f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
-
 
     public float CurrentMoveSpeed
     {
@@ -26,6 +27,10 @@ public class PlayerControler : MonoBehaviour
                 {
                     if (touchingDirections.IsGrounded)
                     {
+                        if (IsRolling)
+                        {
+                            return rollSpeed;
+                        }
                         if (IsRunning)
                         {
                             return runSpeed;
@@ -85,6 +90,22 @@ public class PlayerControler : MonoBehaviour
         {
             _isRunning = value;
             animator.SetBool("isRunning", value);
+        }
+    }
+
+    [SerializeField]
+    private bool _isRolling = false;
+
+    public bool IsRolling
+    {
+        get
+        {
+            return _isRolling;
+        }
+        set
+        {
+            _isRolling = value;
+            animator.SetBool("isRolling", value);
         }
     }
 
@@ -194,6 +215,27 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
+    public void OnRoll(InputAction.CallbackContext context)
+    {
+        if (context.started && touchingDirections.IsGrounded && CanMove)
+        {
+            animator.SetTrigger("roll");
+            IsRolling = true;
+
+            // Dodanie prędkości przewrotu
+            float rollDirection = IsFacingRight ? 1 : -1;
+            rb.velocity = new Vector2(rollDirection * rollImpulse, rb.velocity.y);
+
+            StartCoroutine(StopRollingAfterDelay(1f));
+        }
+    }
+
+    private IEnumerator StopRollingAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        IsRolling = false;
+    }
+
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -209,7 +251,6 @@ public class PlayerControler : MonoBehaviour
             animator.SetTrigger("rangedAttack");
         }
     }
-
 
     public void OnHit(int damage, Vector2 knockback)
     {
