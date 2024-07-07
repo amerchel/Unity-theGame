@@ -1,5 +1,5 @@
 <h1>Opps Shooter</h1>
-![Opps Shooter](https://github.com/amerchel/Unity-theGame/assets/106828687/888949aa-a868-4ef2-a730-e079b3e86954)
+<img src="https://github.com/amerchel/Unity-theGame/assets/106828687/e4efd230-64c2-4480-9dc5-e4aca8a2a88e" />
 
 This game is a not pefect, but we are happy to finish this project.😁
 <h2>Team</h2>
@@ -12,10 +12,13 @@ CDV IT Students
 </ul>
 
 <h2>Screenshots</h2>
-![Screenshot_2](https://github.com/amerchel/Unity-theGame/assets/106828687/a9bc5e9f-b476-4971-9675-dd7699cc6d63) <br/>
-![Screenshot_3](https://github.com/amerchel/Unity-theGame/assets/106828687/9082272e-3835-4e73-ad90-2316b117121f) <br/>
-![Screenshot_4](https://github.com/amerchel/Unity-theGame/assets/106828687/c8285bd7-e3f3-4205-a4b4-a4c62f45dc93) <br/>
-![Screenshot_5](https://github.com/amerchel/Unity-theGame/assets/106828687/51fdeb26-9583-4f67-bd77-b98f06ef54c9) <br/>
+<div>
+  <img src="https://github.com/amerchel/Unity-theGame/assets/106828687/a9bc5e9f-b476-4971-9675-dd7699cc6d63" style="width: 100%;" />
+  <img src="https://github.com/amerchel/Unity-theGame/assets/106828687/9082272e-3835-4e73-ad90-2316b117121f" style="width: 100%;" />
+  <img src="https://github.com/amerchel/Unity-theGame/assets/106828687/c8285bd7-e3f3-4205-a4b4-a4c62f45dc93" style="width: 100%;" />
+  <img src="https://github.com/amerchel/Unity-theGame/assets/106828687/51fdeb26-9583-4f67-bd77-b98f06ef54c9" style="width: 100%;" />
+</div>
+
 
 <h2>Download</h2>
 <a href="https://maders03.itch.io/opps-shooter" rel="noopener" target="_blank">Link to download</a>
