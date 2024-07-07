@@ -11,11 +11,10 @@ public class PlayerControler : MonoBehaviour
     public float runSpeed = 8f;
     public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
-    public float rollImpulse = 10f;
-    public float rollSpeed = 10f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
+
 
     public float CurrentMoveSpeed
     {
@@ -27,10 +26,6 @@ public class PlayerControler : MonoBehaviour
                 {
                     if (touchingDirections.IsGrounded)
                     {
-                        if (IsRolling)
-                        {
-                            return rollSpeed;
-                        }
                         if (IsRunning)
                         {
                             return runSpeed;
@@ -251,6 +246,37 @@ public class PlayerControler : MonoBehaviour
             animator.SetTrigger("rangedAttack");
         }
     }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started && touchingDirections.IsGrounded && CanMove)
+        {
+            animator.SetTrigger("jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            animator.SetTrigger("attack");
+        }
+    }
+
+     public void OnRangedAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            animator.SetTrigger("rangedAttack");
+        }
+    }
+
 
     public void OnHit(int damage, Vector2 knockback)
     {
